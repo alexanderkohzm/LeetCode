@@ -15,25 +15,6 @@ var solution = function (isBadVersion: any) {
 
   return function (n: number): number {
 
-    // // we can use binarySearch - this will allow us to find the first true value 
-    // let start = 0;
-    // let end = n;
-
-    // let lastBadVersion = 1
-
-    // while (start <= end) {
-    //   let midPoint = Math.floor((start + end) / 2)
-
-    //   if (isBadVersion(midPoint)) {
-    //     end = midPoint - 1
-
-    //     lastBadVersion = midPoint
-    //   } else {
-    //     start = midPoint + 1
-    //   }
-    // }
-    // return lastBadVersion
-
     let start = 0;
     let end = n
 
