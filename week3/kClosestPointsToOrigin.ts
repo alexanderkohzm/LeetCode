@@ -138,5 +138,25 @@ function kClosestWithMinHeap(points: number[][], k: number): number[][] {
     }
   }
 
+  function remove(): number[] {
+    swap(0, points.length - 1);
+    const result = points.pop()!;
+    heapifyDown(0);
+    return result
+  }
 
+  const lastParentIndex = Math.max(Math.floor((points.length - 2) / 2), 0)
+
+  // go through entire array
+  for (let i = lastParentIndex; i >= 0; i--) {
+    heapifyDown(i)
+  }
+
+  const result = [] as Array<Array<number>>
+
+  for (let i = 0; i < k; i++) {
+    result.push(remove())
+  }
+
+  return result
 }
