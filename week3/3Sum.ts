@@ -102,6 +102,8 @@ function threeSum(nums: number[]): number[][] {
   for (let i = 0; i < nums.length; i++) {
 
     if (nums[i] > target) break;
+    // we only want unique numbers
+    // if if it's NOT unique, then we just move forward
     if (i > 0 && nums[i] === nums[i - 1]) continue
 
     let j = i + 1
