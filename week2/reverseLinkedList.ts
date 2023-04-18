@@ -40,7 +40,7 @@ function reverseListRecursive(head: ListNode | null): ListNode | null {
 
   const headOfList = reverseListRecursive(head.next)
 
-  // head node as head.next.next 
+  // head.next.next as head node 
   head.next.next = head;
 
   // set head's next to null 
