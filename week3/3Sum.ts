@@ -5,7 +5,7 @@
 // Example 1
 // Input: nums = [-1,0,1,2,-1,-4]
 // Output: [[-1,-1,2],[-1,0,1]]
-// Explanation: 
+// Explanation:
 // nums[0] + nums[1] + nums[2] = (-1) + 0 + 1 = 0.
 // nums[1] + nums[2] + nums[4] = 0 + 1 + (-1) = 0.
 // nums[0] + nums[3] + nums[4] = (-1) + 2 + (-1) = 0.
@@ -27,11 +27,9 @@
 //  -10^5 <= nums[i] <= 10^5
 
 function threeSum(nums: number[]): number[][] {
-
-
-  // a brute force algorithm is to perform a triple for loop 
-  // this would loop through the array 3 times with n, n+1, and n+2 as the starting index 
-  // we will then calculate to see if the sum of the numbers = 0 
+  // a brute force algorithm is to perform a triple for loop
+  // this would loop through the array 3 times with n, n+1, and n+2 as the starting index
+  // we will then calculate to see if the sum of the numbers = 0
   // const arrayToKeepTrack = [] as Array<Array<number>>
 
   // for (let i = 0; i < nums.length; i++) {
@@ -57,14 +55,13 @@ function threeSum(nums: number[]): number[][] {
   // (1) We will need to sort through the triplets and remove any duplicates
   // (2) Space and time complexity is a huge problem. Time complexity is n^3 + n^2
 
-  const resultsArray = [] as Array<Array<number>>
+  const resultsArray = [] as Array<Array<number>>;
 
-  nums.sort((a, b) => a - b)
-
+  nums.sort((a, b) => a - b);
 
   // // the issue with this method is that it exceeds the timeLimit when nums.length === 3000
   // // we then loop through it (triple loop)
-  // // we only want numbers that are different (bigger) than what we have used before 
+  // // we only want numbers that are different (bigger) than what we have used before
 
   // // e.g. k > kLastUsed
   // let iLastUsed = Infinity
@@ -97,53 +94,50 @@ function threeSum(nums: number[]): number[][] {
   //     }
   //   }
   // }
-  let target = 0
+  let target = 0;
 
   for (let i = 0; i < nums.length; i++) {
-
     if (nums[i] > target) break;
     // we only want unique numbers
     // if if it's NOT unique, then we just move forward
-    if (i > 0 && nums[i] === nums[i - 1]) continue
+    if (i > 0 && nums[i] === nums[i - 1]) continue;
 
-    let j = i + 1
-    let k = nums.length - 1
+    let j = i + 1;
+    let k = nums.length - 1;
     while (j < k) {
-      let sum = nums[i] + nums[j] + nums[k]
+      let sum = nums[i] + nums[j] + nums[k];
 
       if (sum === 0) {
-        resultsArray.push([nums[i], nums[j], nums[k]])
+        resultsArray.push([nums[i], nums[j], nums[k]]);
 
-        // move to next unique 
-        while (nums[j] === nums[j + 1]) j++
-        while (nums[k] === nums[k + 1]) k--
+        // move to next unique
+        while (nums[j] === nums[j + 1]) j++;
+        while (nums[k] === nums[k - 1]) k--;
 
-        j++
-        k--
+        j++;
+        k--;
       } else if (sum < target) {
-        j++
+        j++;
       } else {
-        k--
+        k--;
       }
     }
   }
 
+  return resultsArray;
+}
 
-  return resultsArray
-};
+const testForThis = [-1, 0, 1, 2, -1, -4];
+const secondTest = [0, 1, 1];
 
-const testForThis = [-1, 0, 1, 2, -1, -4]
-const secondTest = [0, 1, 1]
+const thirdTest = [0, 0, 0];
 
-const thirdTest = [0, 0, 0]
+const fourthTest = [-1, 0, 1, 0];
 
-const fourthTest = [-1, 0, 1, 0]
-
-const fifthTest = [3, 0, -2, -1, 1, 2]
+const fifthTest = [3, 0, -2, -1, 1, 2];
 
 // console.log(threeSum(testForThis))
 
 // console.log(threeSum(thirdTest))
 
-console.log(threeSum(fifthTest))
-
+console.log(threeSum(fifthTest));
