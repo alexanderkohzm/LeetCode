@@ -4,31 +4,43 @@
 
 // Return intervals after the insertion.
 
-
-
 function insert(intervals: number[][], newInterval: number[]): number[][] {
-
-  const left = [] as Array<Array<number>>
-  const right = [] as Array<Array<number>>
+  const left = [] as Array<Array<number>>;
+  const right = [] as Array<Array<number>>;
 
   for (const interval of intervals) {
-
-    console.log(`I am the interval now: ${interval}`)
-    console.log(`This is newInterval: ${newInterval}`)
+    console.log(`I am the interval now: ${interval}`);
+    console.log(`This is newInterval: ${newInterval}`);
 
     if (interval[1] < newInterval[0]) {
-      left.push(interval)
+      left.push(interval);
     } else if (interval[0] > newInterval[1]) {
-      right.push(interval)
+      right.push(interval);
     } else {
-      // create the new interval 
-      newInterval = [Math.min(interval[0], newInterval[0]), Math.max(interval[1], newInterval[1])]
+      // create the new interval
+      newInterval = [
+        Math.min(interval[0], newInterval[0]),
+        Math.max(interval[1], newInterval[1]),
+      ];
     }
   }
 
-  return [...left, newInterval, ...right]
-};
+  return [...left, newInterval, ...right];
+}
 
-const intervals = [[1, 2], [3, 5], [6, 7], [8, 10], [12, 16]]
+// const intervals = [
+//   [1, 2],
+//   [3, 5],
+//   [6, 7],
+//   [8, 10],
+//   [12, 16],
+// ];
 
-console.log(insert(intervals, [4, 8]))
+// console.log(insert(intervals, [4, 8]));
+
+const intervals2 = [
+  [1, 3],
+  [6, 9],
+];
+
+console.log(insert(intervals2, [2, 5]));
