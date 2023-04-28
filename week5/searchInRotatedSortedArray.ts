@@ -26,23 +26,31 @@ function search(nums: number[], target: number): number {
     const currentNumber = nums[middlePoint];
     if (target === currentNumber) return middlePoint;
 
-    // when dividing the rotated array into two halves, one must be sorted
-
+    // to see if we're in the LEFT side
     if (nums[left] <= currentNumber) {
-      if (nums[left] <= target && target <= currentNumber) {
-        // go to the left
-        right = middlePoint + 1;
-      } else {
-        // go to the right
+      // now we need to check our target and the currentNumber
+      if (target > currentNumber || target < nums[left]) {
+        // if the target is GREATER than the currentNumber
+        // for example [3 (currentNumber), 4(target), 5] --> we need to go RIGHT
+        // OR
+        // target is LESS than nums[left]
+        // for example [4 (nums[left]), 5, 6, 0 (target), 1, 2] --> we need to go RIGHT
         left = middlePoint + 1;
+      } else {
+        // if not, go left
+        right = middlePoint - 1;
       }
     } else {
-      if (currentNumber <= target && target <= nums[right]) {
-        // go to the right
-        left = middlePoint + 1;
+      if (target < currentNumber || target > nums[right]) {
+        // if the target is LESS than the currentNumber
+        // for example [4, 5(target), 6, 7 (currentNumber), 0, 1, 2, 3] --> 5 < 7, so we go LEFT
+        // OR
+        // target is GREATER than nums[right]
+        // for example [4, 5 (target), 6, 7, 0, 1, 2, 3(nums[right])] --> 5 > 3, so we go LEFT
+        right = middlePoint - 1;
       } else {
-        // go to the left
-        right = middlePoint + 1;
+        // if not, go right
+        left = middlePoint + 1;
       }
     }
   }
