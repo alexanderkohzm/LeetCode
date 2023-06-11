@@ -1,7 +1,7 @@
 // React is loaded and is available as React and ReactDOM
 // imports should NOT be used
 const FocusableInput = (props) => {
-  const inputRef = React.useRef(props.shouldFocus);
+  const inputRef = React.useRef();
 
   React.useEffect(() => {
     if (props.shouldFocus) {
