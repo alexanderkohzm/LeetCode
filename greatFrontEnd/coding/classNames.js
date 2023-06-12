@@ -38,48 +38,48 @@ function classNames(...args) {
   const classes = [];
 
   args.forEach((arg) => {
-    // ignore falsey values
+    // Ignore falsey values.
     if (!arg) {
       return;
     }
 
-    // get the type of arg
     const argType = typeof arg;
 
-    // if string or number
+    // Handle string and numbers.
     if (argType === "string" || argType === "number") {
       classes.push(arg);
       return;
     }
 
-    // handle array
+    // Handle arrays.
     if (Array.isArray(arg)) {
       classes.push(classNames(...arg));
       return;
     }
 
-    // handle objects
-    if (arg === "object") {
+    // Handle objects.
+    if (argType === "object") {
       for (const key in arg) {
-        if (Object.hasown(arg, key) && arg[key]) {
+        if (Object.hasOwn(arg, key) && arg[key]) {
           classes.push(key);
         }
       }
+
       return;
     }
   });
+
   return classes.join(" ");
 }
 
+// NOTE This solution is imperfect - if you have nested objects two layers deep it doesnt work
+// I suppose the assumption is that there are no objects that are two layers deep
 console.log(
   classNames(
     "foo",
     {
       bar: true,
       duck: false,
-      car: {
-        happyBar: true,
-      },
     },
     "baz",
     { quux: true }
