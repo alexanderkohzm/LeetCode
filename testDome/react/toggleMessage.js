@@ -4,13 +4,11 @@ class Message extends React.Component {
   constructor(props) {
     super(props);
     this.state = { showPhoneNumber: false };
-    this.handleClick = this.handleClick.bind(this);
   }
 
-  handleClick() {
+  handleClick = () => {
     this.setState({ showPhoneNumber: true });
-  }
-
+  };
   render() {
     return (
       <React.Fragment>

@@ -13,8 +13,6 @@ function newMessage(topicName) {
   // early return if no element found
   if (!element) return;
 
-  console.log("This is element: ", element);
-
   element.style.backgroundColor = "red";
 }
 
