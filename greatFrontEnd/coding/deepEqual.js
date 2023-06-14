@@ -15,7 +15,6 @@
  */
 function deepEqual(valueA, valueB) {
   // this function needs to be recursive
-  console.log(valueA, valueB);
   if (valueA === null || valueB === null) {
     return Object.is(valueA, valueB);
   }
