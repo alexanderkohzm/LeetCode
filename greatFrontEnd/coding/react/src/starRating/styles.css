@@ -2,6 +2,11 @@ body {
   font-family: sans-serif;
 }
 
+.container {
+  display: flex;
+  flex-direction: row;
+}
+
 .star-icon {
   --icon-size: 32px;
   height: var(--icon-size);
