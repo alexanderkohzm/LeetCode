@@ -15,9 +15,8 @@ function promiseAll(iterable) {
   // obj && typeof obj.then == 'function'
 
   return new Promise((resolve, reject) => {
-    const returnArray = [];
-
     let unresolved = iterable.length;
+    const returnArray = new Array(iterable.length);
 
     if (unresolved === 0) {
       resolve(returnArray);
@@ -27,7 +26,6 @@ function promiseAll(iterable) {
     iterable.forEach((item, index) => {
       Promise.resolve(item).then(
         (value) => {
-          // we need to retain the original index of the item
           returnArray[index] = value;
           unresolved -= 1;
 
