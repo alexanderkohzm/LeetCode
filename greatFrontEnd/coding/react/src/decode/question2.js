@@ -20,12 +20,12 @@ const flattenArray = (array) => {
   // these are the two branches
 
   // might have to just create a DFS function here
-  const dfs = (array) => {
-    for (let j = 0; j < array.length; j++) {
-      const currentElement = array[j];
-      if (typeof currentElement === "number") {
-        resultArray.push(currentElement);
-      } else {
+  const dfs = (element) => {
+    if (typeof element === "number") {
+      resultArray.push(element);
+    } else {
+      for (let i = 0; i < element.length; i++) {
+        const currentElement = element[i];
         dfs(currentElement);
       }
     }
@@ -33,18 +33,8 @@ const flattenArray = (array) => {
 
   for (let i = 0; i < array.length; i++) {
     const currentElement = array[i];
-
-    if (typeof currentElement === "number") {
-      resultArray.push(currentElement);
-    } else {
-      // perform DFS
-      dfs(currentElement);
-
-      // the issue right now is that flatten array returns the result array
-      // if we want to recursively call it, we should just get the element itself
-    }
+    dfs(currentElement);
   }
-
   return resultArray;
 };
 
