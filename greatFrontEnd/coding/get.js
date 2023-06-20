@@ -55,8 +55,6 @@ function get(object, path, defaultValue) {
   // we get the first value in paths
   const firstValue = pathArray.shift();
 
-  console.log([keys, firstValue]);
-
   if (pathArray.length === 0) {
     if (keys.includes(firstValue)) {
       return object[firstValue];
