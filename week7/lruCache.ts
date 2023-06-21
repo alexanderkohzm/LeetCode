@@ -110,6 +110,7 @@ class LRUCache {
     const value = node.value
     // remove and add the node
     this.doublyLinkedList.remove(node)
+    // IMPORTANT !! Need to reassign the pointer to the right node after every get
     this.hashMap[key] = this.doublyLinkedList.add(key, value);
     return value
   }
