@@ -38,9 +38,7 @@ function letterCombinations(digits: string): string[] {
 
   const arrayToReturn = [] as string[];
 
-
   // we can do this recursively or iteratively 
-
   // recursive approach 
   // imagine we have "2"
   // we want to go through keyMapping[2] and iterate over the array
@@ -49,9 +47,8 @@ function letterCombinations(digits: string): string[] {
   // keyMapping[2] -> "a", "b", "c"
   // keyMapping[3] -> "ad", "ae", "af", "bd", "be", "bf", "cd", "ce", "cf"
   // when digits length is 0, we push the stringToReturn to the array
-
   /**
-   * params: 
+   * params: digits -> need to remember to pass by value rather than reference 
    */
   const addDigits = (digits: string[], stringToReturn: string) => {
     // base case -> digits length is 0
