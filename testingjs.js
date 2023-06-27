@@ -1,3 +1,5 @@
+// this is a file to quickly work on something and test assumptions
+
 /**
  * @param {Array<*|Array>} value
  * @return {Array}
@@ -7,7 +9,6 @@ function flatten(value) {
   const returnArray = [];
 
   const depthFirstSearch = (input) => {
-    console.log("this is input: ", input);
     for (const element of input) {
       if (typeof element !== "object" || element == null) {
         returnArray.push(element);
