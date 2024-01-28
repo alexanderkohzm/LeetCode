@@ -37,6 +37,38 @@ const numsTarget2 = [-1, 0, 3, 5, 9, 12]
 const noNumber = [1, 2, 3, 4, 5]
 // target 6
 
+function binarySearch2(nums: number[], target: number): number {
+
+  // start is 0 and end 
+  // see middle
+  // if middle is MORE than target, then move to the left 
+  // if middle is LESS than target, move to the right 
+  // return -1 if not found 
+  let start = 0;
+  let end = nums.length - 1
+
+  while (start <= end) {
+    const middle = start + Math.floor((end - start) / 2)
+    const middleNumber = nums[middle]
+
+    if (middleNumber == target) {
+      return middle
+    }
+
+    // if not, go left or right 
+    if (middleNumber < target) {
+      start = middle + 1
+    } else {
+      end = middle - 1
+    }
+  }
+
+  return -1
+}
+
+console.log(binarySearch2(numsTarget2, 2))
+console.log(binarySearch2(numsTarget9, 9))
+console.log(binarySearch2(noNumber, 6))
 
 
 /**

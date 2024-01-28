@@ -33,3 +33,28 @@ const prices2 = [7, 6, 4, 3, 1]
 console.log(maxProfit(prices1))
 
 console.log(maxProfit(prices2))
+
+function maxProfit2(prices: number[]): number {
+
+  let currentHighest = 0;
+  let currentLowestPrice = prices[0]
+
+
+  // start from second day 
+  for (let i = 1; i < prices.length; i++) {
+    const todayPrice = prices[i]
+    const todayPotentialProfit = todayPrice - currentLowestPrice
+
+    if (todayPotentialProfit > currentHighest) {
+      currentHighest = todayPotentialProfit
+    }
+
+    if (todayPrice < currentLowestPrice) {
+      currentLowestPrice = todayPrice
+    }
+  }
+  return currentHighest
+}
+
+console.log(maxProfit2(prices1))
+console.log(maxProfit2(prices2))
