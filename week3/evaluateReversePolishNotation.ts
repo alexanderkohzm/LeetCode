@@ -68,7 +68,8 @@ function evalRPN(tokens: string[]): number {
 
   for (let i = 0; i < tokens.length; i++) {
     const currentToken = tokens[i]
-    if (currentToken.charCodeAt(0) <= "9".charCodeAt(0) && currentToken.charCodeAt(0) >= "0".charCodeAt(0)) {
+    const isOperand = currentToken == "+" || currentToken == "-" || currentToken == "/" || currentToken == "*"
+    if (!isOperand) {
       stack.push(Number(currentToken))
       continue
     } else {
@@ -76,18 +77,24 @@ function evalRPN(tokens: string[]): number {
         const x = (stack.pop())!
         const y = (stack.pop())!
         stack.push(x + y)
+        console.log("This is stackNow: ", stack)
       } else if (currentToken == "-") {
         const x = (stack.pop())!
         const y = (stack.pop())!
         stack.push(x - y)
+        console.log("This is stackNow: ", stack)
       } else if (currentToken == "*") {
         const x = (stack.pop())!
         const y = (stack.pop())!
         stack.push(x * y)
+        console.log("This is stackNow: ", stack)
       } else {
         const x = (stack.pop())!
         const y = (stack.pop())!
-        stack.push(x / y)
+        const division = y / x
+        const numberToPush = division > 0 ? Math.floor(division) : Math.ceil(division)
+        stack.push(numberToPush)
+        console.log("This is stackNow: ", stack)
       }
     }
   }
@@ -95,3 +102,7 @@ function evalRPN(tokens: string[]): number {
 }
 
 console.log(evalRPN(["2", "1", "+", "3", "*"]))
+console.log(evalRPN(["4", "13", "5", "/", "+"]))
+console.log(evalRPN(["10", "6", "9", "3", "+", "-11", "*", "/", "*", "17", "+", "5", "+"]))
+
+// 
