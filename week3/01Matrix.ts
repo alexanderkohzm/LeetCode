@@ -39,8 +39,6 @@ function initialiseNewMatrixAndQueue(mat: number[][]): QueueAndMatrixType {
 
     for (let j = 0; j < mat[0].length; j++) {
 
-
-
       // if mat[i][j] === 0, add that to the newMatrix
       // if not, make it infinity 
       if (mat[i][j] === 0) {
@@ -101,7 +99,105 @@ function updateMatrix(mat: number[][]): number[][] {
   return newMatrix
 };
 
-const mat = [[0, 0, 0],
-[0, 1, 0],
-[1, 1, 1]]
+
+// ok this doesnt work
+// function updateMatrix(mat: number[][]): number[][] {
+
+//   // create a new matrix
+//   // need to make sure it's NOT a static 
+//   const newMatrix = new Array(mat.length)
+
+//   for (let z = 0; z < mat.length; z++) {
+//     newMatrix[z] = new Array(mat[0].length).fill(Number.POSITIVE_INFINITY)
+//   }
+
+//   // we want to go through each element in the matrix
+
+//   // if element == 0, then we set the newMatrix position to 0
+//   // if not, we start to do a BFS 
+//   // let distance be 1 
+
+//   // if we see a 0, then we know that the distance to a 0 is just 1
+//   // and we can set the newMatrix position to 1
+//   // if not, we set distance to 2, and add the distances to the queue 
+
+//   const rows = mat.length;
+//   const columns = mat[0].length;
+
+//   const isOutOfBounds = (row: number, column: number): boolean => {
+//     if (row < 0 || row >= rows || column < 0 || column >= columns) return true
+//     return false
+//   }
+
+//   const coordinates = [
+//     [0, 1],
+//     [1, 0],
+//     [-1, 0],
+//     [0, -1]
+//   ]
+
+//   const generateQueue = (queue: Array<Array<number>>, distance: number): Array<Array<number>> => {
+//     const coordinatesToReturn = coordinates.map((coordinate) => {
+//       const [x, y] = coordinate
+//       return [x * distance, y * distance];
+//     })
+//     return coordinatesToReturn
+//   }
+
+
+
+//   for (let i = 0; i < rows; i++) {
+//     for (let j = 0; j < columns; j++) {
+//       // if the number is 0, then we can just set and continue 
+//       const currentElement = mat[i][j]
+//       if (currentElement === 0) {
+//         newMatrix[i][j] = 0
+//         continue
+//       }
+
+//       // if not, we need to go search 
+
+//       // initiate a queue for each number
+//       let distance = 1;
+//       let queue = generateQueue([] as Array<Array<number>>, distance)
+//       while (queue.length !== 0) {
+//         const [newX, newY] = queue.pop()!
+//         const [directionX, directionY] = [i + newX, j + newY]
+
+//         // if is outOfBounds, then we just continue
+//         if (isOutOfBounds(directionX, directionY) && queue.length > 0) {
+//           continue
+//         } else if (isOutOfBounds(directionX, directionY) && queue.length == 0) {
+//           queue = generateQueue(queue, distance + 1)
+//           distance++
+//           continue
+//         }
+
+//         const targetElement = mat[directionX][directionY]
+//         // if (i == 0 && j == 4) {
+//         //   console.log("targetElement: ", targetElement)
+//         // }
+//         if (targetElement === 0) {
+//           newMatrix[i][j] = distance
+//           // exit 
+//           break;
+//         }
+//         // if last in queue AND still can't find
+//         if (queue.length == 0) {
+//           queue = generateQueue(queue, distance + 1)
+//           distance++
+//         }
+//       }
+//     }
+//   }
+//   return newMatrix
+// }
+
+// const mat = [[0, 0, 0],
+// [0, 1, 0],
+// [1, 1, 1]]
+// const mat = [[0, 1, 0, 1, 1], [1, 1, 0, 0, 1], [0, 0, 0, 1, 0], [1, 0, 1, 1, 1], [1, 0, 0, 0, 1]]
+
+const mat =
+  [[0, 0, 1, 0, 1, 1, 1, 0, 1, 1], [1, 1, 1, 1, 0, 1, 1, 1, 1, 1], [1, 1, 1, 1, 1, 0, 0, 0, 1, 1], [1, 0, 1, 0, 1, 1, 1, 0, 1, 1], [0, 0, 1, 1, 1, 0, 1, 1, 1, 1], [1, 0, 1, 1, 1, 1, 1, 1, 1, 1], [1, 1, 1, 1, 0, 1, 0, 1, 0, 1], [0, 1, 0, 0, 0, 1, 0, 0, 1, 1], [1, 1, 1, 0, 1, 1, 0, 1, 0, 1], [1, 0, 1, 1, 1, 0, 1, 1, 1, 0]]
 console.log(updateMatrix(mat))
