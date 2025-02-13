@@ -16,7 +16,7 @@ class MinStack:
 
     def pop(self) -> None:
         self.stack.pop()
-        self.mind.pop()
+        self.min.pop()
 
 
 
@@ -25,4 +25,8 @@ class MinStack:
 
     def getMin(self) -> int:
         return self.min
-        
+
+solution = Solution() 
+
+
+
