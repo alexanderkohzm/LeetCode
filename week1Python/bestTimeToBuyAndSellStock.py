@@ -6,5 +6,5 @@ from typing import List
 #Return the maximum profit you can achieve from this transaction. If you cannot achieve any profit, return 0.
 
 def solution(prices: List):
-  return 
-  
+
+  return
