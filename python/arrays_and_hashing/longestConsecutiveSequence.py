@@ -16,6 +16,11 @@ class Solution:
         max_sequence = 0
 
         for num in num_set:
+            # we do this because we don't want to count for EVERY number in the set
+            # we only want to count if the number has nothing before (and thus is the start of a new sequence)
+            # e.g. [1, 2, 400, 401, 402, 403, 4, 5]
+            # We only want to start at 1 and 400 and 4
+            # We don't want to count at 2, 401, 402, 403, 5 because there is a number before that (1, 400, 401... etc)
             if num - 1 not in num_set:
                 current = num
                 count = 1
